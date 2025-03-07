@@ -1,27 +1,25 @@
 import { useEffect, useState } from 'react';
 import SearchForm from './components/Search/Search';
-import GetWeather from './services/WeatherServices';
 import GetPlaces from './services/LocationServices';
+import Weather from './components/Weather/Weather';
+import Location from './components/Location/Location';
 
 function App() {
   const [locationList, setLocationList] = useState(null);
   const [showLocation, setShowLocation] = useState(null);
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState('Berga');
   const [coordinates, setCoordinates] = useState(null);
-  const [weather, setWeather] = useState(null);
-  const [searchVal, setSearchVal] = useState(null);
+  const [searchVal, setSearchVal] = useState('Bergsbrunna');
 
   useEffect(() => {
     fetchGeoLocation();
   }, [])
 
   useEffect(() => {
-    // fetchWeather();
-  }, []);
-
-  useEffect(() => {
-    fetchPlaces();
-  }, []);
+    if (searchVal !== null) {
+      fetchPlaces();
+    }
+  }, [searchVal]);
   
   useEffect(() => {
     if (coordinates) {
@@ -38,8 +36,8 @@ function App() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         setCoordinates({
-          lat: position.coords.latitude,
-          lon: position.coords.longitude
+          lat: Number(position.coords.latitude.toPrecision(6)),
+          lon: Number(position.coords.longitude.toPrecision(6))
         });
       },
       (error) => {
@@ -48,19 +46,9 @@ function App() {
     );
   }
 
-  const fetchWeather = async () => {
-    try {
-      const newWeather = await GetWeather(coordinates.lon, coordinates.lat);
-      console.log('wheather object ', newWeather);
-      setWeather(newWeather);
-    } catch (err) {
-      console.error("Error fetching weather data:", err);
-    }
-  };
-
   const fetchPlaces = async () => {
     try {
-      const result = await GetPlaces('Bergsbrunna');
+      const result = await GetPlaces(searchVal);
 
       if (!result) {
         console.error("Location not found");
@@ -79,6 +67,8 @@ function App() {
   return (
     <>
       <SearchForm searchVal={searchVal} setSearchVal={setSearchVal} locationList={locationList} />
+      <Location location={location} />
+      <Weather coordinates={coordinates} />
     </>
   )
 }

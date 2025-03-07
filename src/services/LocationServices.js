@@ -8,7 +8,7 @@ const GetPlaces = async (searchVal) => {
         const response = await axios.post(url, 
             {
                 input: searchVal,
-                languageCode: "sv"
+                languageCode: "sv",
             },
             {
                 headers: {
