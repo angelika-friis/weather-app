@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const GetPlaces = async (searchVal) => {
+export const getPlaces = async (searchVal) => {
     const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
     const url = `https://places.googleapis.com/v1/places:autocomplete?key=${apiKey}`;
 
@@ -26,4 +26,44 @@ const GetPlaces = async (searchVal) => {
     }
 };
 
-export default GetPlaces;
+export const getPlaceNameFromCoords = async (coordinates) => {
+    console.log("Fetching place name for coordinates:", coordinates);
+    
+    const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coordinates.lat},${coordinates.lon}&key=${apiKey}`;
+
+    console.log(url)
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const results = data.results;
+
+        let place = { locality: null, sublocality: null, region: null };
+
+        for (let result of results) {
+            for (let component of result.address_components) {
+                if (component.types.includes("locality")) {
+                    place.locality = component.long_name;
+                } else if (component.types.includes("sublocality")) {
+                    place.sublocality = component.long_name;
+                } else if (component.types.includes("administrative_area_level_2")) {
+                    place.region = component.long_name;
+                }
+            }
+            if (place.locality && place.region || place.sublocality && place.region) {
+                break;
+            }
+
+        }
+        console.log("Place name:", place);
+        return place;
+    } catch (error) {
+        return console.error(error);
+    }
+};

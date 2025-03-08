@@ -1,8 +1,15 @@
-const Location = ({ location }) => {
+const Location = ({ location }) => {
 
     return (
         <>
-            <h1>{location}</h1>
+            {location && location.result.region ? (
+                <>
+                    <h1>{location.result.sublocality}</h1>
+                    <h2>{location.result.region}</h2>
+                </>
+            ) : (
+                <p>Laddar...</p>
+            )}
         </>
     );
 };
