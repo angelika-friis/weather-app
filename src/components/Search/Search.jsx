@@ -1,5 +1,3 @@
-import WeatherServices from "../../services/WeatherServices";
-
 const SearchForm = ({ searchVal, setSearchVal, locationList }) => {
 
     return (

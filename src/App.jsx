@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
+import { getPlaces, getPlaceNameFromCoords } from './services/LocationServices';
 import SearchForm from './components/Search/Search';
-import GetPlaces from './services/LocationServices';
-import Weather from './components/Weather/Weather';
 import Location from './components/Location/Location';
+import ForcastContainer from './components/ForcastContainer/ForcastContainer';
 
 function App() {
   const [locationList, setLocationList] = useState(null);
-  const [showLocation, setShowLocation] = useState(null);
-  const [location, setLocation] = useState('Berga');
+  const [location, setLocation] = useState(null);
   const [coordinates, setCoordinates] = useState(null);
   const [searchVal, setSearchVal] = useState('Bergsbrunna');
 
@@ -20,12 +19,12 @@ function App() {
       fetchPlaces();
     }
   }, [searchVal]);
-  
+
   useEffect(() => {
     if (coordinates) {
-      console.log("coordinates is now set:", coordinates);
+      fetchLocationName();
     }
-  }, [coordinates]);
+  }, [coordinates])
 
   const fetchGeoLocation = async () => {
     if (!navigator.geolocation) {
@@ -46,9 +45,19 @@ function App() {
     );
   }
 
+  const fetchLocationName = async () => {
+    try {
+      const result = await getPlaceNameFromCoords(coordinates);
+
+      setLocation({ result });
+    } catch (err) {
+      console.error("Error fetching location name:", err);
+    }
+  };
+
   const fetchPlaces = async () => {
     try {
-      const result = await GetPlaces(searchVal);
+      const result = await getPlaces(searchVal);
 
       if (!result) {
         console.error("Location not found");
@@ -56,8 +65,9 @@ function App() {
       } else if (result.length === 1) {
         setLocation(result[0]);
         setCoordinates({ lat: result.lat, lon: result.lon });
+      } else {
+        setLocationList(result);
       }
-      setLocationList(result);
     } catch (err) {
       console.error("Error fetching places:", err);
     }
@@ -68,7 +78,7 @@ function App() {
     <>
       <SearchForm searchVal={searchVal} setSearchVal={setSearchVal} locationList={locationList} />
       <Location location={location} />
-      <Weather coordinates={coordinates} />
+      <ForcastContainer coordinates={coordinates} />
     </>
   )
 }
