@@ -20,6 +20,8 @@ Google - Places API (New):
 - https://developers.google.com/maps/documentation/places/web-service/text-search?authuser=0
 - https://developers.google.com/maps/documentation/places/web-service/place-details
 - https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API
+Fetch:
+- https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 Env variables in Vite:
 - https://vite.dev/guide/env-and-mode
 Funktion för att räkna ut vädersträck från grader:
@@ -28,8 +30,10 @@ Konvertera unix UTC till lokal tid:
 - https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
 Konvertera en timestamp till rätt format:
 - https://www.freecodecamp.org/news/javascript-get-current-date-todays-date-in-js/
+- https://saimana.com/list-of-country-locale-code/
 - https://www.w3schools.com/jsref/jsref_tolocaletimestring.asp
 - https://www.w3schools.com/jsref/jsref_tolocaledatestring.asp
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay
 Jämföra tider:
 - https://stackoverflow.com/questions/19004950/how-to-compare-time-in-javascript
 Väder iconer:

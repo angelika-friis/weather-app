@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { getForcast, getSunTime } from '../../services/WeatherServices';
-import TodaysForcast from '../TodaysForcast/TodaysForcast';
-import WeeklyWeather from '../WeeklyWeather/WeeklyWeather';
+import { getForcast, getSunTime } from '../../services/ForcastServices';
+import TodaysForcast from '../../components/TodaysForcast/TodaysForcast';
+import DayWeatherCard from '../../components/DayWeatherCard/DayWeatherCard';
 
-const ForcastContainer = ({ coordinates, coordsForForcast, setCoordsForForcast }) => {
+const ForcastContainer = ({ coordinates }) => {
 
     const [weatherData, setWeatherData] = useState(null);
     const [weatherDataByDay, setWeatherDataByDay] = useState(null);
@@ -22,7 +22,7 @@ const ForcastContainer = ({ coordinates, coordsForForcast, setCoordsForForcast }
     }, [weatherData])
 
     useEffect(() => {
-        if (coordinates !== null) {
+        if (coordinates) {
             fetchSunTime(coordinates);
         }
     }, [coordinates])
@@ -32,10 +32,6 @@ const ForcastContainer = ({ coordinates, coordsForForcast, setCoordsForForcast }
             const newWeatherData = await getForcast(coordinates);
             console.log('wheather object ', newWeatherData);
             setWeatherData(newWeatherData);
-
-            // const lat = newWeatherData.geometry.coordinates[1];
-            // const lon = newWeatherData.geometry.coordinates[0];
-            // setCoordsForForcast({ lat, lon })
 
         } catch (err) {
             console.error("Error fetching weather data:", err);
@@ -61,7 +57,7 @@ const ForcastContainer = ({ coordinates, coordsForForcast, setCoordsForForcast }
         try {
             const newSunTime = await getSunTime(coordinates, new Date().toLocaleDateString('sv-SE'));
             setSunTime(newSunTime);
-            console.log(newSunTime);
+            // console.log(newSunTime);
         } catch (err) {
             console.error("Error fetching sun time data:", err);
         }
@@ -69,10 +65,21 @@ const ForcastContainer = ({ coordinates, coordsForForcast, setCoordsForForcast }
 
     return (
         <>
-            {weatherData ? (
+            {weatherData && coordinates && weatherDataByDay && sunTime ? (
                 <>
                     <TodaysForcast weatherData={weatherData.timeSeries[0]} sunTime={sunTime} />
-                    <WeeklyWeather weatherData={weatherDataByDay} />
+                    <div>
+                        {Object.entries(weatherDataByDay).map(([date, data], index) => (
+                            <DayWeatherCard
+                                key={date}
+                                date={date}
+                                data={data}
+                                index={index}
+                                coordinates={coordinates}
+                            />
+                        ))}
+                    </div>
+                    
                 </>
             ) : (
                 <p>Laddar...</p>

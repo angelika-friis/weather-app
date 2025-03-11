@@ -1,5 +1,5 @@
 export const getCompassDirection = (angle) => {
-    const directions = ["North", "North-West", "West", "South-West", "South", "South-East", "East", "North-East"];
+    const directions = ["N", "NV", "V", "SV", "S", "SÖ", "Ö", "NÖ"];
     const index = Math.round(angle / 45) % 8;
     return directions[index];
 }

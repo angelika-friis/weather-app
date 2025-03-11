@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getPlaces, getPlaceNameFromCoords } from './services/LocationServices';
 import SearchForm from './components/Search/Search';
 import Location from './components/Location/Location';
-import ForcastContainer from './components/ForcastContainer/ForcastContainer';
+import ForcastContainer from './containers/ForcastContainer/ForcastContainer';
 
 function App() {
   const [locationList, setLocationList] = useState(null);
@@ -15,8 +15,8 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (searchVal !== null) {
-      fetchPlaces();
+    if (searchVal) {
+      //fetchPlaces();
     }
   }, [searchVal]);
 
@@ -35,8 +35,8 @@ function App() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         setCoordinates({
-          lat: Number(position.coords.latitude.toPrecision(6)),
-          lon: Number(position.coords.longitude.toPrecision(6))
+          lat: parseFloat(position.coords.latitude.toFixed(6)),
+          lon: parseFloat(position.coords.longitude.toFixed(6))
         });
       },
       (error) => {

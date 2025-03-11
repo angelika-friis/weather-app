@@ -27,12 +27,12 @@ export const getPlaces = async (searchVal) => {
 };
 
 export const getPlaceNameFromCoords = async (coordinates) => {
-    console.log("Fetching place name for coordinates:", coordinates);
+    // console.log("Fetching place name for coordinates:", coordinates);
     
     const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coordinates.lat},${coordinates.lon}&key=${apiKey}`;
 
-    console.log(url)
+    // console.log(url)
 
     try {
         const response = await fetch(url);
@@ -61,7 +61,7 @@ export const getPlaceNameFromCoords = async (coordinates) => {
             }
 
         }
-        console.log("Place name:", place);
+        // console.log("Place name:", place);
         return place;
     } catch (error) {
         return console.error(error);
