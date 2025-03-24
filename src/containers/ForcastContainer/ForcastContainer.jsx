@@ -34,7 +34,7 @@ const ForcastContainer = ({ coordinates }) => {
             setWeatherData(newWeatherData);
 
         } catch (err) {
-            console.error("Error fetching weather data:", err);
+            console.error("Error fetching weather dataForTheDay:", err);
         }
     };
 
@@ -59,7 +59,7 @@ const ForcastContainer = ({ coordinates }) => {
             setSunTime(newSunTime);
             // console.log(newSunTime);
         } catch (err) {
-            console.error("Error fetching sun time data:", err);
+            console.error("Error fetching sun time dataForTheDay:", err);
         }
     }
 
@@ -69,11 +69,11 @@ const ForcastContainer = ({ coordinates }) => {
                 <>
                     <TodaysForcast weatherData={weatherData.timeSeries[0]} sunTime={sunTime} />
                     <div>
-                        {Object.entries(weatherDataByDay).map(([date, data], index) => (
+                        {Object.entries(weatherDataByDay).map(([date, dataForTheDay], index) => (
                             <DayWeatherCard
                                 key={date}
                                 date={date}
-                                data={data}
+                                dataForTheDay={dataForTheDay}
                                 index={index}
                                 coordinates={coordinates}
                             />
