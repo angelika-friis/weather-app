@@ -16,10 +16,8 @@ SMHI Open Data Meteorological Forecasts - PMP:
 - https://opendata.smhi.se/metfcst/pmp/parameters
 Open Weather Map - Daily Forecast 16 Days
 - https://openweathermap.org/forecast16
-Google - Places API (New): 
-- https://developers.google.com/maps/documentation/places/web-service/text-search?authuser=0
-- https://developers.google.com/maps/documentation/places/web-service/place-details
-- https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API
+OpenStreetMap Nominatim: 
+- https://nominatim.org/release-docs/develop/api/Lookup/
 Fetch:
 - https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 Env variables in Vite:
@@ -34,7 +32,9 @@ Konvertera en timestamp till rätt format:
 - https://www.w3schools.com/jsref/jsref_tolocaletimestring.asp
 - https://www.w3schools.com/jsref/jsref_tolocaledatestring.asp
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
 Jämföra tider:
 - https://stackoverflow.com/questions/19004950/how-to-compare-time-in-javascript
-Väder iconer:
+Iconer:
 - https://github.com/metno/weathericons/tree/main
+- https://www.npmjs.com/package/react-icons

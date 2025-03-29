@@ -34,7 +34,7 @@ const ForcastContainer = ({ coordinates }) => {
             setWeatherData(newWeatherData);
 
         } catch (err) {
-            console.error("Error fetching weather dataForTheDay:", err);
+            console.error("Error fetching weather:", err);
         }
     };
 
@@ -55,11 +55,11 @@ const ForcastContainer = ({ coordinates }) => {
 
     const fetchSunTime = async (coordinates) => {
         try {
+            console.log(coordinates)
             const newSunTime = await getSunTime(coordinates, new Date().toLocaleDateString('sv-SE'));
             setSunTime(newSunTime);
-            // console.log(newSunTime);
         } catch (err) {
-            console.error("Error fetching sun time dataForTheDay:", err);
+            console.error("Error fetching sun time:", err);
         }
     }
 

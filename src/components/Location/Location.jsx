@@ -2,10 +2,10 @@ const Location = ({ location }) => {
 
     return (
         <>
-            {location && location.result.region ? (
+            {location ? (
                 <>
-                    <h1>{location.result.sublocality}</h1>
-                    <h2>{location.result.region}</h2>
+                    <h1>{location.name}</h1>
+                    <h2>{location.municipality}</h2>
                 </>
             ) : (
                 <p>Laddar...</p>
