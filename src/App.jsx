@@ -1,15 +1,23 @@
 import { useEffect, useState } from 'react';
 import Location from './components/Location/Location';
 import ForcastContainer from './containers/ForcastContainer/ForcastContainer';
-import LocationSearch from './components/LocationSearch';
+import LocationSearch from './components/LocationSearch/LocationSearch';
 import { reverseGeocode } from './services/locationService';
+import { getCookie } from './utils/getCookie.js';
 
 function App() {
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const [favorites, setFavorites] = useState(null);
 
   useEffect(() => {
     fetchGeoLocation();
+    setFavorites(getCookie('favoriteLocations'))
   }, [])
+
+
+  useEffect(() => {
+    console.log(selectedLocation);
+  }, [selectedLocation])
 
   const fetchGeoLocation = async () => {
     if (!navigator.geolocation) {
@@ -44,8 +52,8 @@ function App() {
 
   return (
     <>
-      <LocationSearch setSelectedLocation={setSelectedLocation} />
-      <Location location={selectedLocation} />
+      <LocationSearch setSelectedLocation={setSelectedLocation} fetchGeoLocation={fetchGeoLocation} favorites={favorites}/>
+      <Location location={selectedLocation} favorites={favorites} setFavorites={setFavorites} />
       {selectedLocation && <ForcastContainer coordinates={selectedLocation.coordinates} />}
     </>
   )

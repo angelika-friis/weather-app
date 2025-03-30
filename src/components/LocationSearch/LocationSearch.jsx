@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { searchLocations } from '../services/locationService';
+import { searchLocations } from '../../services/locationService';
 
-const LocationSearch = ({ setSelectedLocation }) => {
+const LocationSearch = ({ setSelectedLocation, fetchGeoLocation, favorites }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const [inFocus, setInFocus] = useState(false);
+  
   const searchTimeout = useRef(null);
 
   useEffect(() => {
@@ -43,9 +44,21 @@ const LocationSearch = ({ setSelectedLocation }) => {
 
   const handleSelectLocation = (location) => {
     setSelectedLocation(location);
-    setSearchTerm(location.name);
+    setSearchTerm('');
     setSuggestions([]);
   };
+
+  const handleBlur = () => {
+    setTimeout(() => {
+      setInFocus(false);
+    }, 200);
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault;
+    fetchGeoLocation();
+    setInFocus(false);
+  }
 
   return (
     <div>
@@ -54,9 +67,34 @@ const LocationSearch = ({ setSelectedLocation }) => {
           type="text"
           placeholder="Sök och välj ort"
           value={searchTerm}
+          onFocus={(e) => setInFocus(true)}
+          onBlur={(e) => handleBlur()}
           onChange={(e) => setSearchTerm(e.target.value)}
           aria-label="Sök efter ort"
         />
+
+        {inFocus && searchTerm.trim().length === 0 && (
+          <ul>
+            <li onClick={handleClick}>
+              Min position
+            </li>
+
+            {favorites.length > 0 && (
+              <>
+                <p>Mina favoriter</p>
+                {favorites.map(favorite => (
+                  <li
+                    key={favorite.id}
+                    onClick={() => handleSelectLocation(favorite)}
+                  >
+                    <span>{favorite.name}, </span>
+                    <span>{favorite.municipality}</span>
+                  </li>
+                ))}
+              </>
+            )}
+          </ul>
+        )}
 
         {suggestions.length > 0 && (
           <ul>
