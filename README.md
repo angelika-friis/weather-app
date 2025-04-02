@@ -14,8 +14,6 @@ Geolocation:
 SMHI Open Data Meteorological Forecasts - PMP:
 - https://opendata.smhi.se/metfcst/pmp/introduction
 - https://opendata.smhi.se/metfcst/pmp/parameters
-Open Weather Map - Daily Forecast 16 Days
-- https://openweathermap.org/forecast16
 OpenStreetMap Nominatim: 
 - https://nominatim.org/release-docs/develop/api/Lookup/
 Fetch:
@@ -24,9 +22,8 @@ Env variables in Vite:
 - https://vite.dev/guide/env-and-mode
 Funktion för att räkna ut vädersträck från grader:
 - https://stackoverflow.com/questions/48750528/get-direction-from-degrees
-Konvertera unix UTC till lokal tid:
-- https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
 Konvertera en timestamp till rätt format:
+- https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
 - https://www.freecodecamp.org/news/javascript-get-current-date-todays-date-in-js/
 - https://saimana.com/list-of-country-locale-code/
 - https://www.w3schools.com/jsref/jsref_tolocaletimestring.asp

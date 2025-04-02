@@ -33,6 +33,5 @@ export const getWeatherIcon = (value, isDay) => {
 
     const iconSrc = 'https://raw.githubusercontent.com/metno/weathericons/refs/heads/main/weather/svg/' + weatherIcons[value];
 
-    // console.log('väder icon: ' + iconSrc)
     return iconSrc;
 };

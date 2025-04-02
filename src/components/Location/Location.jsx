@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { setCookie } from '../../utils/setCookie.js';
+import { FaRegStar, FaStar } from 'react-icons/fa';
+import './Location.css';
 
 const Location = ({ location, favorites, setFavorites }) => {
 
@@ -33,17 +35,21 @@ const Location = ({ location, favorites, setFavorites }) => {
 
 
     return (
-        <>
+        <div className='location'>
             {location && (
                 <>
                     <button onClick={handleClick}>
-                        {isFavorite ? '★' : '☆'}
+                        {isFavorite
+                            ? <FaStar />
+                            : <FaRegStar />}
                     </button>
-                    <h1>{location.name}</h1>
-                    <h2>{location.municipality}</h2>
+                    <div>
+                        <h1>{location.name}</h1>
+                        <h2>{location.municipality}</h2>
+                    </div>
                 </>
             )}
-        </>
+        </div>
     );
 };
 

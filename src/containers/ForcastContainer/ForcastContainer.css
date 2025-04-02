@@ -1,0 +1,16 @@
+.day-cards-container {
+    display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+    .day-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .day-cards-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }

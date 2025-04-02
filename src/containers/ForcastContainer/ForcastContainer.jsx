@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getForcast, getSunTime } from '../../services/ForcastServices';
 import TodaysForcast from '../../components/TodaysForcast/TodaysForcast';
 import DayWeatherCard from '../../components/DayWeatherCard/DayWeatherCard';
+import './ForcastContainer.css'
 
 const ForcastContainer = ({ coordinates }) => {
 
@@ -39,12 +40,11 @@ const ForcastContainer = ({ coordinates }) => {
     };
 
     const processWeatherData = (timeSeries) => {
-
         const groupedData = {};
-
         timeSeries.forEach(entry => {
-            const date = entry.validTime.split('T')[0];
-
+            const utcTime = new Date(entry.validTime);
+            const localTime = utcTime.toLocaleString('sv-SE', { timeZone: 'Europe/Stockholm' });
+            const date = localTime.split(' ')[0];
             if (!groupedData[date]) {
                 groupedData[date] = [];
             }
@@ -55,7 +55,6 @@ const ForcastContainer = ({ coordinates }) => {
 
     const fetchSunTime = async (coordinates) => {
         try {
-            console.log(coordinates)
             const newSunTime = await getSunTime(coordinates, new Date().toLocaleDateString('sv-SE'));
             setSunTime(newSunTime);
         } catch (err) {
@@ -65,10 +64,10 @@ const ForcastContainer = ({ coordinates }) => {
 
     return (
         <>
-            {weatherData && coordinates && weatherDataByDay && sunTime ? (
+            {weatherData && coordinates && weatherDataByDay ? (
                 <>
                     <TodaysForcast weatherData={weatherData.timeSeries[0]} sunTime={sunTime} />
-                    <div>
+                    <div className='day-cards-container'>
                         {Object.entries(weatherDataByDay).map(([date, dataForTheDay], index) => (
                             <DayWeatherCard
                                 key={date}
@@ -76,10 +75,11 @@ const ForcastContainer = ({ coordinates }) => {
                                 dataForTheDay={dataForTheDay}
                                 index={index}
                                 coordinates={coordinates}
+                                fetchSunTime={fetchSunTime}
                             />
                         ))}
                     </div>
-                    
+
                 </>
             ) : (
                 <p>Laddar...</p>

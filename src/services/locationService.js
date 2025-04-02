@@ -43,11 +43,13 @@ export const searchLocations = async (query) => {
                     item.name || '';
 
                 const exactMatch = placeName.toLowerCase() === cleanQuery.toLowerCase();
-                
+
                 return exactMatch;
             })
             .map(item => {
-                const name = item.address.city ||
+                const name =
+                    item.suburb ||
+                    item.address.city ||
                     item.address.town ||
                     item.address.village ||
                     item.address.hamlet ||
@@ -65,6 +67,7 @@ export const searchLocations = async (query) => {
                     },
                     county: county,
                     municipality: municipality,
+                    suburb: item.address.suburb || ''
                 };
             });
     } catch (error) {
@@ -99,7 +102,9 @@ export const reverseGeocode = async (coordinates) => {
         return {
             id: item.place_id,
             fullName: item.display_name,
-            name: item.address.city ||
+            name:
+                item.suburb ||
+                item.address.city ||
                 item.address.town ||
                 item.address.village ||
                 item.address.hamlet ||
@@ -109,7 +114,8 @@ export const reverseGeocode = async (coordinates) => {
                 lon: parseFloat(item.lon).toFixed(6)
             },
             county: item.address.county || '',
-            municipality: item.address.municipality || ''
+            municipality: item.address.municipality || '',
+            suburb: item.address.suburb || ''
         };
     } catch (error) {
         console.error('Error searching locations:', error);

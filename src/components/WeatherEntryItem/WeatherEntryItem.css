@@ -1,0 +1,11 @@
+.entry-item {
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: 60px auto;
+    align-items: center;
+    gap: 20px;
+}
+
+.hour {
+    font-size: 1.1rem;
+}

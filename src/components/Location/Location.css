@@ -1,0 +1,23 @@
+.location button {
+    padding: 0.5rem 0.6rem;
+    background-color: transparent;
+    border: 1px solid #333;
+    color: #333;
+    border-radius: 3px;
+    float: right;
+}
+
+.location {
+    padding: 30px 50px;
+    background-color: white;
+    margin: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 8px #ddd;
+
+}
+
+.location h2 {
+    font-size: medium;
+    font-weight: 300;
+}
+
