@@ -5,6 +5,7 @@
     color: #333;
     border-radius: 3px;
     float: right;
+    cursor: pointer;
 }
 
 .location {
@@ -13,7 +14,6 @@
     margin: 15px;
     border-radius: 5px;
     box-shadow: 0 0 8px #ddd;
-
 }
 
 .location h2 {

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import WeatherEntryItem from "../WeatherEntryItem/WeatherEntryItem";
 import { getWeekdayTitle } from "../../utils/getWeekdayTitle";
 import Sunrise from "../Sunrise/Sunrise.jsx";
-import WeatherIcon from "../WeatherIcon";
-import TemperatureDisplay from "../TemperatureDisplay";
-import PrecipitationDisplay from "../PrecipitationDisplay";
-import WeatherToggleButton from "../WeatherToggleButton";
+import WeatherIcon from "../WeatherIcon/WeatherIcon.jsx";
+import TemperatureDisplay from "../TemperatureDisplay/TemperatureDisplay.jsx";
+import PrecipitationDisplay from "../PrecipitationDisplay/PrecipitationDisplay.jsx";
+import WeatherToggleButton from "../WeatherToggleButton/WeatherToggleButton.jsx";
 import './DayWeatherCard.css';
 
 const DayWeatherCard = ({ date, dataForTheDay, index, coordinates }) => {
@@ -60,7 +60,7 @@ const DayWeatherCard = ({ date, dataForTheDay, index, coordinates }) => {
                     ) : (
                         <p>Laddar...</p>
                     )}
-                    <PrecipitationDisplay totalPrecipitation={processedWeatherData.totalPrecipitation} />
+                    <PrecipitationDisplay precipitation={processedWeatherData.totalPrecipitation} />
                 </div>
             </div>
             <WeatherIcon iconValue={processedWeatherData.weatherIcon} />
