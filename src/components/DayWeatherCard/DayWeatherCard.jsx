@@ -32,8 +32,8 @@ const DayWeatherCard = ({ date, dataForTheDay, index, coordinates }) => {
             hour.parameters?.find(param => param.name === "t")?.values[0] || null
         );
         const totalPrecipitation = dataForTheDay.reduce((sum, dataForTheHour) => {
-            const pMedian = dataForTheHour.parameters?.find(dataPoint => dataPoint.name === "pmedian")?.values[0];
-            return sum + (pMedian || 0);
+            const pMedian = dataForTheHour.parameters.find(dataPoint => dataPoint.name === "pmedian").values[0];
+            return sum + (pMedian);
         }, 0).toFixed(1);
         setProcessedWeatherData({
             weatherIcon: mostFrequentIcon,

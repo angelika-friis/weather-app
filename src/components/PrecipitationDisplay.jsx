@@ -3,7 +3,7 @@ import { FaDroplet, FaDropletSlash } from "react-icons/fa6";
 const PrecipitationDisplay = ({ totalPrecipitation }) => {
     return (
         <p>
-            {totalPrecipitation === 0
+            {totalPrecipitation === "0.0"
                 ? <FaDropletSlash className="icon" />
                 : (<><FaDroplet className="icon" /> {totalPrecipitation} mm</>)}
         </p>

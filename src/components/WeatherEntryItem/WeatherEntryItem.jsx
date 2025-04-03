@@ -11,7 +11,7 @@ const WeatherEntryItem = ({ entry }) => {
              (${entry.parameters.find(dataPoint => dataPoint.name === "gust").values[0]}) m/s, 
             ${getCompassDirection(entry.parameters.find(dataPoint => dataPoint.name === "wd").values[0])}`}
             </p>
-            <p>{entry.parameters.find(dataPoint => dataPoint.name === "pmean").values[0]} mm/h</p>
+            <p>{entry.parameters.find(dataPoint => dataPoint.name === "pmedian").values[0]} mm/h</p>
         </div>
     </li>)
 };

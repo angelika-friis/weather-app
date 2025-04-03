@@ -5,7 +5,6 @@
     padding: 20px 30px;
     box-shadow: 0 0 8px #ddd;
     overflow: hidden;
-    max-height: 350px;
     overflow-y: auto;
 }
 
@@ -44,4 +43,10 @@ li {
 .weather-symbol {
     max-width: 100px;
     margin-top: -20px;
+}
+
+@media (min-width: 640px) {
+    .day-weather-card {
+        max-height: 300px;
+    }
 }

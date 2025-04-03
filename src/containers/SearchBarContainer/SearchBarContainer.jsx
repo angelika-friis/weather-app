@@ -8,7 +8,6 @@ import './SearchBarContainer.css';
 const SearchBarContainer = ({ setSelectedLocation, fetchGeoLocation, favorites }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [inFocus, setInFocus] = useState(false);
 
@@ -23,7 +22,6 @@ const SearchBarContainer = ({ setSelectedLocation, fetchGeoLocation, favorites }
       return;
     }
     searchTimeout.current = setTimeout(async () => {
-      setIsLoading(true);
       setError(null);
       try {
         const results = await searchLocations(searchTerm);
@@ -31,8 +29,6 @@ const SearchBarContainer = ({ setSelectedLocation, fetchGeoLocation, favorites }
       } catch (err) {
         console.error('Search error:', err);
         setError('Kunde inte hitta platsen');
-      } finally {
-        setIsLoading(false);
       }
     }, 300);
     return () => clearTimeout(searchTimeout.current);
@@ -51,9 +47,7 @@ const SearchBarContainer = ({ setSelectedLocation, fetchGeoLocation, favorites }
         {inFocus && searchTerm.trim().length === 0 && (
           <Menu favorites={favorites} fetchGeoLocation={fetchGeoLocation} onSelect={handleSelectLocation} />
         )}
-        <SuggestionsList suggestions={suggestions} onSelect={handleSelectLocation
-
-        } />
+        <SuggestionsList suggestions={suggestions} onSelect={handleSelectLocation} />
       </div>
     </div>
   );
