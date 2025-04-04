@@ -1,0 +1,28 @@
+.menuContainer {
+  display: block;
+  width: 100%;
+}
+
+.menuList {
+  padding: 20px 0;
+  list-style: none;
+}
+
+.menuItem {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 8px 30px 8px 0;
+  cursor: pointer;
+}
+
+.menuIcon {
+  margin-right: 10px;
+  margin-left: 30px;
+  color: royalblue
+}
+
+.favoritesHeader {
+  margin: 15px 0 5px 30px;
+  font-weight: bold;
+}

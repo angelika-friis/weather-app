@@ -1,11 +1,11 @@
-import { FaDroplet, FaDropletSlash } from "react-icons/fa6";
+import { TbDroplet, TbDropletOff } from "react-icons/tb";
 
 const PrecipitationDisplay = ({ precipitation }) => {
     return (
         <p>
             {precipitation === "0.0" || precipitation === 0
-                ? <FaDropletSlash className="icon" />
-                : (<><FaDroplet className="icon" /> {precipitation} mm</>)}
+                ? <TbDropletOff className="icon" />
+                : (<><TbDroplet className="icon" /> {precipitation} mm</>)}
         </p>
     );
 };

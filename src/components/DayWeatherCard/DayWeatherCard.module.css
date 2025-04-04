@@ -1,0 +1,162 @@
+.dayWeatherCard {
+    background-color: white;
+    border-radius: 5px;
+    margin: 15px;
+    padding: 20px 30px;
+    box-shadow: 0 0 8px #ddd;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+li {
+    list-style: none;
+    padding: 0 10%;
+}
+
+.dayWeatherCard h3, h4 {
+    color: rgb(77, 77, 77);
+    font-weight: normal;
+}
+
+.overview {
+    display: flex;
+    justify-content: space-between;
+}
+
+.overviewWeather {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.dayWeatherCard button {
+    background-color: white;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 47%;
+}
+
+@media (min-width: 640px) {
+    .dayWeatherCard {
+        max-height: 100%;
+        cursor: pointer;
+    }
+}
+
+.Button {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  padding: 0 0.875rem;
+  margin: 0;
+  outline: 0;
+  border: 1px solid royalblue;
+  border-radius: 0.375rem;
+  background-color: royalblue;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: royalblue;
+  user-select: none;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: royalblue;
+    }
+  }
+
+  &:active {
+    background-color: royalblue;
+  }
+
+  &:focus-visible {
+    outline: 2px solid royalblue;
+    outline-offset: -1px;
+  }
+}
+
+.Backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: black;
+  opacity: 0.2;
+  transition: opacity 150ms cubic-bezier(0.45, 1.005, 0, 1.005);
+
+  @media (prefers-color-scheme: dark) {
+    opacity: 0.7;
+  }
+
+  &[data-starting-style],
+  &[data-ending-style] {
+    opacity: 0;
+  }
+}
+
+.Popup {
+  box-sizing: border-box;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24rem;
+  max-width: calc(100vw - 3rem);
+  margin-top: -2rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  outline: 1px solid royalblue;
+  background-color: royalblue;
+  color: royalblue;
+  transition: all 150ms;
+
+  @media (prefers-color-scheme: dark) {
+    outline: 1px solid royalblue;
+  }
+
+  &[data-starting-style],
+  &[data-ending-style] {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+.Title {
+  margin-top: -0.375rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  letter-spacing: -0.0025em;
+  font-weight: 500;
+}
+
+.Description {
+  margin: 0 0 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: royalblue;
+}
+
+.Actions {
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+}
+
+.dialogOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dialogContent {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

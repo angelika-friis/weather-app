@@ -47,7 +47,9 @@ const SearchBarContainer = ({ setSelectedLocation, fetchGeoLocation, favorites }
         {inFocus && searchTerm.trim().length === 0 && (
           <Menu favorites={favorites} fetchGeoLocation={fetchGeoLocation} onSelect={handleSelectLocation} />
         )}
-        <SuggestionsList suggestions={suggestions} onSelect={handleSelectLocation} />
+        {inFocus && suggestions.length > 0 && (
+          <SuggestionsList suggestions={suggestions} onSelect={handleSelectLocation} />
+          )}
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ const TodaysForcast = ({ weatherData, sunTime }) => {
                     ws={weatherData.parameters.find(dataPoint => dataPoint.name === "ws").values[0]}
                     gust={weatherData.parameters.find(dataPoint => dataPoint.name === "gust").values[0]}
                     wd={weatherData.parameters.find(dataPoint => dataPoint.name === "wd").values[0]} />
-                <PrecipitationDisplay precipitation={weatherData.parameters.find(dataPoint => dataPoint.name === "pmedian").values[0]}/>
+                <PrecipitationDisplay precipitation={weatherData.parameters.find(dataPoint => dataPoint.name === "pmean").values[0]}/>
             </div>
         </div>
     )

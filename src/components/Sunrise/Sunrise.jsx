@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react"
 import { getSunTime } from "../../services/ForcastServices.js"
-import { FaArrowDown, FaSun } from "react-icons/fa";
-import { FaArrowUp } from "react-icons/fa6";
+import { FiSunrise, FiSunset } from "react-icons/fi";
+
 import './Sunrise.css';
 
-const Sunrise = ({ date, coordinates }) => {
-    const [sunTime, setSunTime] = useState(null);
-
+const Sunrise = ({ sunTime, setSunTime, date, coordinates }) => {
     useEffect(() => {
         if (coordinates) {
             fetchSunTime(coordinates);
@@ -27,12 +25,12 @@ const Sunrise = ({ date, coordinates }) => {
         {sunTime ? (
             <div id="sunrise">
                 <div>
-                    <FaArrowUp className="sunrise-icon icon" />
+                    <FiSunrise className="sunrise-icon icon" />
                     <p>{new Intl.DateTimeFormat('sv-SE', {
                         hour: 'numeric',
                         minute: 'numeric',
                     }).format(new Date(sunTime.sunrise))}</p>
-                    <FaArrowDown className="sunrise-icon icon" />
+                    <FiSunset className="sunrise-icon icon" />
                     <p>{new Intl.DateTimeFormat('sv-SE', {
                         hour: 'numeric',
                         minute: 'numeric',

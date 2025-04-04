@@ -20,6 +20,8 @@ Fetch:
 - https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 Env variables in Vite:
 - https://vite.dev/guide/env-and-mode
+Costume hook for determining window size
+-https://usehooks.com/usewindowsize
 Funktion för att räkna ut vädersträck från grader:
 - https://stackoverflow.com/questions/48750528/get-direction-from-degrees
 Konvertera en timestamp till rätt format:

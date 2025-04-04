@@ -1,21 +1,21 @@
-import { FaStar } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa6";
-import './Menu.css';
+import { FaLocationArrow } from "react-icons/fa";
+import { FaStar } from "react-icons/fa6";
+import styles from './Menu.module.css';
 
 const Menu = ({ favorites, fetchGeoLocation, onSelect }) => {
   return (
-    <div className="menu">
-      <ul>
-        <li onClick={fetchGeoLocation}>
-          <FaLocationDot className='menu-icon icon' />
+    <div className={styles.menuContainer}>
+      <ul className={styles.menuList}>
+        <li className={styles.menuItem} onClick={fetchGeoLocation}>
+          <FaLocationArrow className={styles.menuIcon} />
           <span>Min position</span>
         </li>
         {favorites.length > 0 && (
           <>
-            <p className="header-favorites">Favoriter</p>
+            <p className={styles.favoritesHeader}>Favoriter</p>
             {favorites.map(favorite => (
-              <li key={favorite.id} onClick={() => onSelect(favorite)}>
-                <FaStar className='menu-icon icon star-icon' />
+              <li key={favorite.id} className={styles.menuItem} onClick={() => onSelect(favorite)}>
+                <FaStar className={styles.menuIcon} />
                 <div>
                   <span>{favorite.name}, </span>
                   <span>{favorite.municipality}</span>

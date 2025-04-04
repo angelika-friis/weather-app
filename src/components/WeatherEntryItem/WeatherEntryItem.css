@@ -1,11 +1,29 @@
 .entry-item {
-    margin: 20px 0;
-    display: grid;
-    grid-template-columns: 60px auto;
-    align-items: center;
+    display: flex;
+    flex-direction: row;
     gap: 20px;
+    align-items: center;
 }
 
-.hour {
-    font-size: 1.1rem;
-}
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: center;
+    /* vertical-align: middle; */
+  }
+
+  th {
+    font-weight: bold;
+    color: white;
+    background-color: royalblue;
+    padding: 20px 15px;
+  }
+  
+  .entry-item td {
+    border-top: 1px solid #ddd;
+  }
+  

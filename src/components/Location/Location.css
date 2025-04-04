@@ -8,6 +8,12 @@
     cursor: pointer;
 }
 
+.location button:hover {
+    color: royalblue;
+    border-color: royalblue;
+    background-color: rgba(65, 105, 225, 0.196);
+}
+
 .location {
     padding: 30px 50px;
     background-color: white;
@@ -21,3 +27,9 @@
     font-weight: 300;
 }
 
+@media (min-width: 1000px) {
+    .location {
+        padding: 60px 10%;
+        height: 200px;
+    }
+}

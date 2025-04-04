@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
-import WeatherEntryItem from "../WeatherEntryItem/WeatherEntryItem";
-import { getWeekdayTitle } from "../../utils/getWeekdayTitle";
+import { useWindowSize } from "@uidotdev/usehooks";
+import { getWeekdayTitle } from "../../utils/getWeekdayTitle.js";
+import WeatherEntryItem from "../WeatherEntryItem/WeatherEntryItem.jsx";
 import Sunrise from "../Sunrise/Sunrise.jsx";
 import WeatherIcon from "../WeatherIcon/WeatherIcon.jsx";
 import TemperatureDisplay from "../TemperatureDisplay/TemperatureDisplay.jsx";
 import PrecipitationDisplay from "../PrecipitationDisplay/PrecipitationDisplay.jsx";
 import WeatherToggleButton from "../WeatherToggleButton/WeatherToggleButton.jsx";
-import './DayWeatherCard.css';
+import Popup from "../Popup/Popup.jsx";
+import styles from './DayWeatherCard.module.css';
 
 const DayWeatherCard = ({ date, dataForTheDay, index, coordinates }) => {
+    const [sunTime, setSunTime] = useState(null);
     const [isListVisible, setIsListVisible] = useState(false);
     const [processedWeatherData, setProcessedWeatherData] = useState({
         weatherIcon: null,
         tempsForTheDay: [],
         totalPrecipitation: 0,
     });
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const windowSize = useWindowSize();
 
     useEffect(() => {
         if (!dataForTheDay || dataForTheDay.length === 0) return;
@@ -32,8 +37,8 @@ const DayWeatherCard = ({ date, dataForTheDay, index, coordinates }) => {
             hour.parameters?.find(param => param.name === "t")?.values[0] || null
         );
         const totalPrecipitation = dataForTheDay.reduce((sum, dataForTheHour) => {
-            const pMedian = dataForTheHour.parameters.find(dataPoint => dataPoint.name === "pmedian").values[0];
-            return sum + (pMedian);
+            const pMean = dataForTheHour.parameters.find(dataPoint => dataPoint.name === "pmean").values[0];
+            return sum + (pMean);
         }, 0).toFixed(1);
         setProcessedWeatherData({
             weatherIcon: mostFrequentIcon,
@@ -47,31 +52,65 @@ const DayWeatherCard = ({ date, dataForTheDay, index, coordinates }) => {
     };
 
     return (
-        <div className="day-weather-card">
-            <div className="overview">
+        <div className={styles.dayWeatherCard} onClick={() => setIsPopupOpen(true)}>
+            <div className={styles.overview}>
                 <div>
                     <h3>{getWeekdayTitle(date, index)}</h3>
                     <h4>{date}</h4>
                 </div>
-                <div className="overview-weather">
+                <div className={styles.overviewWeather}>
                     <TemperatureDisplay temps={processedWeatherData.tempsForTheDay} />
                     {coordinates && date ? (
-                        <Sunrise date={date} coordinates={coordinates} />
+                        <Sunrise sunTime={sunTime} setSunTime={setSunTime} date={date} coordinates={coordinates} />
                     ) : (
                         <p>Laddar...</p>
                     )}
                     <PrecipitationDisplay precipitation={processedWeatherData.totalPrecipitation} />
                 </div>
             </div>
-            <WeatherIcon iconValue={processedWeatherData.weatherIcon} />
-            <br />
-            <WeatherToggleButton isListVisible={isListVisible} onToggle={toggleListVisibility} />
-            {isListVisible && (
-                <ul className="entry-items">
-                    {dataForTheDay.map((dataForTheHour, index) => (
-                        <WeatherEntryItem key={index} entry={dataForTheHour} />
-                    ))}
-                </ul>
+            <WeatherIcon iconValue={processedWeatherData.weatherIcon} isDay={true} />
+
+            {windowSize.width > 600 ? (
+                <Popup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)}>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Symbol</th>
+                                <th className={styles.hour} >Tid</th>
+                                <th>Temperatur</th>
+                                <th>Vind (Byvind)</th>
+                                <th>Nederbörd</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {dataForTheDay.map((dataForTheHour, index) => (
+                                <WeatherEntryItem key={index} entry={dataForTheHour} sunTime={sunTime} />
+                            ))}
+                        </tbody>
+                    </table>
+                </Popup>
+            ) : (
+                <>
+                    <WeatherToggleButton isListVisible={isListVisible} onToggle={toggleListVisibility} />
+                    {isListVisible && (
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Symbol</th>
+                                    <th className={styles.hour} >Tid</th>
+                                    <th>Temperatur</th>
+                                    <th>Vind (Byvind)</th>
+                                    <th>Nederbörd</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {dataForTheDay.map((dataForTheHour, index) => (
+                                    <WeatherEntryItem key={index} entry={dataForTheHour} sunTime={sunTime} />
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
+                </>
             )}
         </div>
     );
