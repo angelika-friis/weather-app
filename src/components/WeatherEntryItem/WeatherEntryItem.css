@@ -1,29 +1,35 @@
 .entry-item {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid whitesmoke;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    padding: 8px;
-    text-align: center;
-    /* vertical-align: middle; */
-  }
+  width: 100%;
+  border-collapse: collapse;
+}
 
-  th {
-    font-weight: bold;
-    color: white;
-    background-color: royalblue;
-    padding: 20px 15px;
-  }
-  
-  .entry-item td {
-    border-top: 1px solid #ddd;
-  }
-  
+th,
+td {
+  padding: 8px;
+  text-align: center;
+  /* vertical-align: middle; */
+}
+
+th {
+  font-weight: bold;
+  color: white;
+  background-color: royalblue;
+  padding: 20px 15px;
+}
+
+.entry-item td {
+  border-top: 1px solid #ddd;
+}
+
+.hourly-weather-icon {
+  max-height: 40px;
+}

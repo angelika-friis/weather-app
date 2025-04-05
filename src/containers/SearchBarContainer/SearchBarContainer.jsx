@@ -41,6 +41,7 @@ const SearchBarContainer = ({ setSelectedLocation, fetchGeoLocation, favorites }
   };
 
   return (
+    <div className='root'>
     <div className='search-bar-wrapper'>
       <div className='search-bar-container'>
         <SearchTextField searchTerm={searchTerm} setSearchTerm={setSearchTerm} setInFocus={setInFocus} />
@@ -51,6 +52,7 @@ const SearchBarContainer = ({ setSelectedLocation, fetchGeoLocation, favorites }
           <SuggestionsList suggestions={suggestions} onSelect={handleSelectLocation} />
           )}
       </div>
+    </div>
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getForcast, getSunTime } from '../../services/ForcastServices';
+import Location from '../../components/Location/Location';
 import TodaysForcast from '../../components/TodaysForcast/TodaysForcast';
 import DayWeatherCard from '../../components/DayWeatherCard/DayWeatherCard';
-import './ForcastContainer.css'
+import styles from './ContentContainer.module.css';
 
-const ForcastContainer = ({ coordinates }) => {
+const ConsoleContainer = ({ coordinates, setLocation, location, favorites, setFavorites }) => {
 
     const [weatherData, setWeatherData] = useState(null);
     const [weatherDataByDay, setWeatherDataByDay] = useState(null);
@@ -31,7 +32,6 @@ const ForcastContainer = ({ coordinates }) => {
     const fetchWeatherData = async () => {
         try {
             const newWeatherData = await getForcast(coordinates);
-            console.log('wheather object ', newWeatherData);
             setWeatherData(newWeatherData);
 
         } catch (err) {
@@ -50,6 +50,10 @@ const ForcastContainer = ({ coordinates }) => {
             }
             groupedData[date].push(entry);
         });
+        const keys = Object.keys(groupedData);
+        const lastKey = keys[keys.length - 1];
+        delete groupedData[lastKey];
+
         setWeatherDataByDay(groupedData);
     };
 
@@ -63,31 +67,30 @@ const ForcastContainer = ({ coordinates }) => {
     }
 
     return (
-        <>
-            {weatherData && coordinates && weatherDataByDay ? (
-                <>
+        <div className={styles.pageContent}>
+            <div className={styles.pageHeader}>
+                <Location location={location} favorites={favorites} setFavorites={setFavorites} />
+                {weatherData && sunTime && (
                     <TodaysForcast weatherData={weatherData.timeSeries[0]} sunTime={sunTime} />
-                    <div className='day-cards-container'>
-                        {Object.entries(weatherDataByDay).map(([date, dataForTheDay], index) => (
-                            <DayWeatherCard
-                                key={date}
-                                date={date}
-                                dataForTheDay={dataForTheDay}
-                                index={index}
-                                coordinates={coordinates}
-                                fetchSunTime={fetchSunTime}
-                            />
-                        ))}
-                    </div>
-
-                </>
-            ) : (
-                <p>Laddar...</p>
-            )}
-        </>
+                )}
+            </div>
+            {weatherDataByDay &&
+                <div className={styles.dayCardsContainer}>
+                    {Object.entries(weatherDataByDay).map(([date, dataForTheDay], index) => (
+                        <DayWeatherCard
+                            key={date}
+                            date={date}
+                            dataForTheDay={dataForTheDay}
+                            index={index}
+                            coordinates={coordinates}
+                            fetchSunTime={fetchSunTime}
+                        />
+                    ))}
+                </div>}
+        </div>
     );
 
 }
 
 
-export default ForcastContainer;
+export default ConsoleContainer;

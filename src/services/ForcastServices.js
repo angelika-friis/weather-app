@@ -22,7 +22,6 @@ export const getSunTime = async (coordinates, date) => {
         }
 
         const url = `https://api.met.no/weatherapi/sunrise/3.0/sun?lat=${coordinates.lat}&lon=${coordinates.lon}&date=${date}`;
-        console.log(url);
 
         let response = await fetch(url);
         if (!response.ok) {

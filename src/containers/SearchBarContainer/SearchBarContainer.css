@@ -22,6 +22,7 @@
 }
 
 .search-bar-wrapper {
+    box-sizing: border-box;
     background-color: royalblue;
     height: 100%;
     padding: 50px 0;

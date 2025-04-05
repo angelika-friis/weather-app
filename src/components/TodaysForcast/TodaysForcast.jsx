@@ -10,11 +10,9 @@ const TodaysForcast = ({ weatherData, sunTime }) => {
 
     return (
         <div id="todays-forcast">
-            {sunTime && <img className="todays-icon" src={weatherIcon} alt='weather icon' />}
+            <img className="todays-icon" src={weatherIcon} alt='weather icon' />
             <div id="weather-info">
-                <p id="hour">Kl. {new Intl.DateTimeFormat('sv-SE', {
-                    hour: 'numeric'
-                }).format(new Date())}</p>
+                <p id="header">Just nu</p>
                 <p id="temp">{Math.round(weatherData.parameters.find(dataPoint => dataPoint.name === "t").values[0])}ºC</p>
                 <Wind
                     ws={weatherData.parameters.find(dataPoint => dataPoint.name === "ws").values[0]}

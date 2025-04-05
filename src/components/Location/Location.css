@@ -1,11 +1,25 @@
+.location-name {
+    padding: 10px 0 0 20px;
+}
+
+.location h1 {
+    font-size: 50px;
+}
+
+.location h2 {
+    font-size: medium;
+    font-weight: 300;
+}
+
 .location button {
     padding: 0.5rem 0.6rem;
     background-color: transparent;
-    border: 1px solid #333;
-    color: #333;
+    border: 1px solid royalblue;
+    color: royalblue;
     border-radius: 3px;
-    float: right;
     cursor: pointer;
+    float: right;
+    margin: 20px;
 }
 
 .location button:hover {
@@ -14,22 +28,29 @@
     background-color: rgba(65, 105, 225, 0.196);
 }
 
-.location {
-    padding: 30px 50px;
-    background-color: white;
-    margin: 15px;
-    border-radius: 5px;
-    box-shadow: 0 0 8px #ddd;
-}
+@media (min-width: 640px) {
+    .location {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.location h2 {
-    font-size: medium;
-    font-weight: 300;
+    .location button {
+        margin: 0 0 0 30px;
+    }
+
+    .location h1 {
+        font-size: 30px;
+    }
 }
 
 @media (min-width: 1000px) {
     .location {
         padding: 60px 10%;
         height: 200px;
+    }
+
+    .location h1 {
+        font-size: 60px;
     }
 }

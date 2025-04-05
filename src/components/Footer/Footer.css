@@ -1,0 +1,14 @@
+footer {
+    background-color: royalblue;
+    padding: 40px;
+}
+
+footer p, a {
+    color: rgb(152, 173, 235);
+}
+
+footer a {
+    text-decoration: none;
+    border-bottom: 2px solid rgba(152, 173, 235, 0.371);
+    font-weight: bold;
+}

@@ -68,9 +68,9 @@ const DayWeatherCard = ({ date, dataForTheDay, index, coordinates }) => {
                     <PrecipitationDisplay precipitation={processedWeatherData.totalPrecipitation} />
                 </div>
             </div>
-            <WeatherIcon iconValue={processedWeatherData.weatherIcon} isDay={true} />
+            <WeatherIcon className={styles.cardWeatherSymbol} iconValue={processedWeatherData.weatherIcon} isDay={true} />
 
-            {windowSize.width > 600 ? (
+            {windowSize.width > 640 ? (
                 <Popup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)}>
                     <table>
                         <thead>
@@ -84,7 +84,7 @@ const DayWeatherCard = ({ date, dataForTheDay, index, coordinates }) => {
                         </thead>
                         <tbody>
                             {dataForTheDay.map((dataForTheHour, index) => (
-                                <WeatherEntryItem key={index} entry={dataForTheHour} sunTime={sunTime} />
+                                <WeatherEntryItem key={index} entry={dataForTheHour} sunTime={sunTime} table={true} />
                             ))}
                         </tbody>
                     </table>
@@ -93,22 +93,9 @@ const DayWeatherCard = ({ date, dataForTheDay, index, coordinates }) => {
                 <>
                     <WeatherToggleButton isListVisible={isListVisible} onToggle={toggleListVisibility} />
                     {isListVisible && (
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Symbol</th>
-                                    <th className={styles.hour} >Tid</th>
-                                    <th>Temperatur</th>
-                                    <th>Vind (Byvind)</th>
-                                    <th>Nederbörd</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {dataForTheDay.map((dataForTheHour, index) => (
-                                    <WeatherEntryItem key={index} entry={dataForTheHour} sunTime={sunTime} />
-                                ))}
-                            </tbody>
-                        </table>
+                            dataForTheDay.map((dataForTheHour, index) => (
+                                <WeatherEntryItem key={index} entry={dataForTheHour} sunTime={sunTime} table={false}/>
+                            ))
                     )}
                 </>
             )}

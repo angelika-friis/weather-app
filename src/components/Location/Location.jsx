@@ -43,7 +43,7 @@ const Location = ({ location, favorites, setFavorites }) => {
                             ? <FaStar />
                             : <FaRegStar />}
                     </button>
-                    <div>
+                    <div className='location-name'>
                         <h1>{location.name}</h1>
                         <h2>{location.municipality}</h2>
                     </div>

@@ -13,10 +13,10 @@
 
 .popup {
   background: white;
-  padding: 20px;
+  padding: 40px 20px 20px 20px;
   border-radius: 8px;
   min-width: 450px;
-  max-width: 80vw;  /* Popupen kan vara så bred som hela skärmen */
+  max-width: 80vw;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
   max-height: 80%;
@@ -25,15 +25,17 @@
 }
 
 .closeButton {
-  background: white;
-  border: white solid 1px;
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
-  padding-bottom: 3px;
-  font-size: 24px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
   cursor: pointer;
-  position: fixed;
-  top: 10%;
-  right: 20%;
+  color: #555;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: #333;
 }

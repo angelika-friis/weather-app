@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import Location from './components/Location/Location';
-import ForcastContainer from './containers/ForcastContainer/ForcastContainer';
+import ContentContainer from './containers/ContentContainer/ContentContainer';
 import SearchBarContainer from './containers/SearchBarContainer/SearchBarContainer.jsx';
+import Footer from './components/Footer/Footer.jsx';
 import { reverseGeocode } from './services/locationService';
 import { getCookie } from './utils/getCookie.js';
 import './App.css';
@@ -59,8 +59,9 @@ function App() {
   return (
     <div className='App'>
       <SearchBarContainer setSelectedLocation={setSelectedLocation} fetchGeoLocation={fetchGeoLocation} favorites={favorites} />
-      <Location location={selectedLocation} favorites={favorites} setFavorites={setFavorites} />
-      {selectedLocation && <ForcastContainer coordinates={selectedLocation.coordinates} />}
+      {selectedLocation &&
+        <ContentContainer coordinates={selectedLocation.coordinates} location={selectedLocation} favorites={favorites} setFavorites={setFavorites} />}
+      <Footer />
     </div >
   )
 }
