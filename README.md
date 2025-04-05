@@ -1,29 +1,61 @@
 # Weather app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+I detta projekt har jag utvecklat en väderapplikation med React. Applikationen hämtar aktuell väderdata från [SMHI:s](https://opendata.smhi.se/metfcst/pmp/introduction) och [yr.no:s](https://api.met.no/weatherapi/sunrise/3.0/documentation) API:er. Geografisk information hämtas från [OpenStreetMap Nominatim](https://nominatim.org/release-docs/develop/api/Lookup/) med API.
 
-Currently, two official plugins are available:
+## ⚙️ Funktionalitet
+Projektet innehåller följande funktioner:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Väderprognos:** Visar väderprognos för 10 kommande dagar. Inkluderar min/max temperatur, soluppgång och nedgång, nederbörd och timmöversikt.
+- **Sökfunktion:** Möjlighet att söka efter väder i olika städer.
+- **Favoritplatser:** Användare kan spara favoritplatser som visas vid nästa besök. Datan sparas i en cookie 🍪.
+- **Auto location:** Applikationen visar vädret för användarens aktuella plats automatiskt vid uppstart (med hjälp av HTML5 Geolocation).
 
-## Referenser:
-Geolocation:
-- https://www.w3schools.com/jsref/prop_nav_geolocation.asp
-- https://www.w3schools.com/jsref/met_geo_getcurrentposition.asp
+## 🚀 Installation och användning
+``` bash
+# Klona repot
+git clone https://github.com/angelika-friis/weather-app.git
+
+# Gå till projektmappen
+cd weather-app
+
+# Installera beroenden
+npm install
+
+# Starta projektet
+npm start
+```
+
+## Referenser och material jag har använt i projektet:
+Iconer:
+- https://github.com/metno/weathericons/tree/main
+- https://www.npmjs.com/package/react-icons
+
 SMHI Open Data Meteorological Forecasts - PMP:
 - https://opendata.smhi.se/metfcst/pmp/introduction
 - https://opendata.smhi.se/metfcst/pmp/parameters
+
+Yr.no - Sunrise 3.0:
+- https://api.met.no/weatherapi/sunrise/3.0/documentation
+
 OpenStreetMap Nominatim: 
 - https://nominatim.org/release-docs/develop/api/Lookup/
+
+Geolocation:
+- https://www.w3schools.com/jsref/prop_nav_geolocation.asp
+- https://www.w3schools.com/jsref/met_geo_getcurrentposition.asp
+
+Hur man kan göra en search bar i React:
+- https://www.youtube.com/watch?v=sWVgMcz8Q44
+
 Fetch:
 - https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-Env variables in Vite:
-- https://vite.dev/guide/env-and-mode
+
 Costume hook for determining window size
 -https://usehooks.com/usewindowsize
+
 Funktion för att räkna ut vädersträck från grader:
 - https://stackoverflow.com/questions/48750528/get-direction-from-degrees
+
 Konvertera en timestamp till rätt format:
 - https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
 - https://www.freecodecamp.org/news/javascript-get-current-date-todays-date-in-js/
@@ -32,8 +64,6 @@ Konvertera en timestamp till rätt format:
 - https://www.w3schools.com/jsref/jsref_tolocaledatestring.asp
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
+
 Jämföra tider:
 - https://stackoverflow.com/questions/19004950/how-to-compare-time-in-javascript
-Iconer:
-- https://github.com/metno/weathericons/tree/main
-- https://www.npmjs.com/package/react-icons
